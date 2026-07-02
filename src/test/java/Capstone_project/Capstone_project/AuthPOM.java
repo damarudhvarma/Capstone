@@ -24,7 +24,7 @@ public class AuthPOM {
 		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		js=(JavascriptExecutor)driver;
 		driver.get("https://wasteful-leg.demo.prestashop.com");
-//		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 
 	}
 	
@@ -40,6 +40,8 @@ public class AuthPOM {
 	@FindBy(xpath="//div/input[@name=\"psgdpr\"]")WebElement checkbtn1;
 	@FindBy(name="customer_privacy")WebElement checkbtn2;
 	@FindBy(xpath="//button[@class='btn btn-primary form-control-submit']")WebElement createaccount;
+	@FindBy(xpath="//a[contains(normalize-space(),'Sign out')]")WebElement signout;
+	@FindBy(xpath="//button[@id='userMenuButton']")WebElement usermenu;
 	//signin page locators 
 	@FindBy(xpath="//input[@aria-label='Email']")WebElement login_email;
 	@FindBy(xpath="//input[@id='field-password']")WebElement login_password;
@@ -97,7 +99,24 @@ public class AuthPOM {
 		wait.until(ExpectedConditions.elementToBeClickable(createaccount));
 		createaccount.click();
 			}
-	public void signin(String logmail,String logpasswrd) {
+	
+	public void signout() throws InterruptedException {
+	     wait.until(ExpectedConditions.elementToBeClickable(usermenu));
+		usermenu.click();
+		Thread.sleep(2000);
+		//Select se = new Select(usermenu);
+		//se.deSelectByContainsVisibleText("Sign out");
+		//se.selectByVisibleText(" Sign out ");
+		wait.until(ExpectedConditions.visibilityOf(signout));
+		 wait.until(ExpectedConditions.elementToBeClickable(signout));
+		 signout.click();
+		
+		
+	}
+	public void signin(String logmail,String logpasswrd) throws InterruptedException {
+		Thread.sleep(2000);
+		wait.until(ExpectedConditions.elementToBeClickable(signin));
+		 js.executeScript("arguments[0].click();", signin);
 		wait.until(ExpectedConditions.visibilityOf(login_email));
 		login_email.clear();
 		login_email.sendKeys(logmail);
@@ -106,7 +125,8 @@ public class AuthPOM {
 		login_password.sendKeys(logpasswrd);
 		wait.until(ExpectedConditions.elementToBeClickable(login));
 		login.click();
-
+		
+		
 	}
 
  
