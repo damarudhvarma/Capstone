@@ -1,7 +1,4 @@
-package General;
-
-
-
+package Capstone_project.Capstone_project;
 import java.time.Duration;
 
 import org.openqa.selenium.JavascriptExecutor;

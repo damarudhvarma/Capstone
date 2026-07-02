@@ -2,6 +2,7 @@ package Capstone_project.Capstone_project;
 
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -18,13 +19,11 @@ public class AuthPOM {
 	
 	
 	public AuthPOM(WebDriver driver) {
-		driver=new ChromeDriver();
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		js=(JavascriptExecutor)driver;
-		driver.get("https://wasteful-leg.demo.prestashop.com");
-//		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
+		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 
 	}
 	
@@ -44,7 +43,13 @@ public class AuthPOM {
 	@FindBy(xpath="//input[@aria-label='Email']")WebElement login_email;
 	@FindBy(xpath="//input[@id='field-password']")WebElement login_password;
 	@FindBy(xpath="//button[@id='submit-login']")WebElement login;
+	
+	
 	public void signup() throws InterruptedException {
+
+wait.until(ExpectedConditions.invisibilityOfElementLocated(
+        By.id("loadingMessage")));
+
 		Thread.sleep(2000);
 		wait.until(ExpectedConditions.elementToBeClickable(signin));
 		 js.executeScript("arguments[0].click();", signin);
@@ -83,21 +88,22 @@ public class AuthPOM {
 			}
 	public void signup_checkbox() throws InterruptedException {
 		Thread.sleep(5000);
-		// js.executeScript("arguments[0].scrollIntoView(true);", checkbtn1);
+		 js.executeScript("arguments[0].scrollIntoView(true);", checkbtn1);
 		//wait.until(ExpectedConditions.elementToBeClickable(checkbtn1));
 		checkbtn1.click();
 		//Thread.sleep(5000);
-		//js.executeScript("arguments[0].scrollIntoView(true);", checkbtn2);
+		js.executeScript("arguments[0].scrollIntoView(true);", checkbtn2);
 		//wait.until(ExpectedConditions.elementToBeClickable(checkbtn2));
 		checkbtn2.click();
 			}
 	public void signup_create() throws InterruptedException {
-		Thread.sleep(5000);
+		Thread.sleep(2000);
 		 js.executeScript("arguments[0].scrollIntoView(true);", createaccount);
 		wait.until(ExpectedConditions.elementToBeClickable(createaccount));
 		createaccount.click();
 			}
-	public void signin(String logmail,String logpasswrd) {
+	public void signin(String logmail,String logpasswrd) throws InterruptedException {
+		Thread.sleep(3000);
 		wait.until(ExpectedConditions.visibilityOf(login_email));
 		login_email.clear();
 		login_email.sendKeys(logmail);

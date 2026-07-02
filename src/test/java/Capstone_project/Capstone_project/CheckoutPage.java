@@ -1,7 +1,7 @@
 package Capstone_project.Capstone_project;
-
 import java.time.Duration;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -19,9 +19,7 @@ public class CheckoutPage {
 	 JavascriptExecutor js;
 	   WebDriverWait wait;
 	 public CheckoutPage(WebDriver driver) {
-		 driver=new ChromeDriver();
 	        this.driver = driver;
-	        driver.get("https://demo.prestashop.com");
 	        try {
 				Thread.sleep(1500);
 			} catch (InterruptedException e) {
@@ -31,7 +29,7 @@ public class CheckoutPage {
 	    	js=(JavascriptExecutor)driver;
 	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Initialize explicit wait
 	        PageFactory.initElements(driver, this);
-	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
+//	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 	        driver.manage().window().maximize();
 	        js.executeScript("window.scrollBy(0,700)");
 
@@ -49,7 +47,7 @@ public void waitForPageLoad() {
 }
 
 	    
-	    @FindBy(xpath = "//article[@data-id-product=3]") WebElement product;
+	    @FindBy(xpath = "//article[@data-id-product=3]//a") WebElement product;
 	    @FindBy(xpath="//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div[2]/div[2]/button") WebElement add_to_cart;
 	    @FindBy(xpath="//a[text()=\"Proceed to checkout\"]") WebElement proceed_checkout;
 	    @FindBy(xpath="//div[@class='modal-header']//p//i") WebElement add_to_cart_modal;
@@ -67,14 +65,36 @@ public void waitForPageLoad() {
 	    @FindBy(id="field-id_country")WebElement country;
 	    @FindBy(name="confirm-addresses")WebElement continueaddressbutton;
 	    @FindBy(name="confirmDeliveryOption") WebElement Continuetopayment;
+
+@FindBy(xpath="//a[contains(@href,'cart?action=show')]")
+WebElement cart;
+
 	    @FindBy(xpath="//*[@id=\"customer-form\"]/footer/button") WebElement continueOnPersonalInfo;
 	    
 
 		public void selectProduct() throws InterruptedException {
 			Thread.sleep(5000);
-			wait.until(ExpectedConditions.visibilityOfAllElements(product));
+			js.executeScript("window.scrollBy(0,400);");
+//			wait.until(ExpectedConditions.visibilityOfAllElements(product));
+
+WebElement ele =
+        wait.until(ExpectedConditions.visibilityOf(product));
+
+js.executeScript(
+        "arguments[0].scrollIntoView({block:'center'});",
+        ele);
+
+System.out.println(
+        "X=" + ele.getLocation().getX() +
+        " Y=" + ele.getLocation().getY());
+
+Thread.sleep(2000);
+
+ele.click();
+
 		     js.executeScript("arguments[0].scrollIntoView(true);", product);
-		    wait.until(ExpectedConditions.elementToBeClickable(product)).click();
+		     System.out.println("Clicking Product");
+		     wait.until(ExpectedConditions.elementToBeClickable(product)).click();
 		    waitForPageLoad();
 		    Thread.sleep(2000);
 		    js.executeScript("window.scrollBy(0,200)");
@@ -106,36 +126,27 @@ public void waitForPageLoad() {
 	        Checkout.click();
 	    }
 	    
-	    public void fillingShippingDetails(String fname,String lname) throws InterruptedException {
+	    public void fillingShippingDetails(String homeaddress,  String pincode,String homecity) throws InterruptedException {
 	    	
 	    	Thread.sleep(3000);
 	    	waitForPageLoad();
 	    	 js.executeScript("window.scrollBy(0,100)");
-	    	wait.until(ExpectedConditions.elementToBeClickable(firstname));
-	    	firstname.clear();
-	    	firstname.click();
-	    	firstname.sendKeys(fname);
-	    	 js.executeScript("window.scrollBy(0,300)");
-	    	 Thread.sleep(2000);
-	    	wait.until(ExpectedConditions.elementToBeClickable(lastname));
-	    	lastname.clear();
-	    	lastname.click();
-	    	lastname.sendKeys(lname);
-	    	Thread.sleep(2000);
-	    	wait.until(ExpectedConditions.elementToBeClickable(email));
-	    	email.sendKeys("abc@gmail.com");
-
-	    	Thread.sleep(4000);
-//	    	js.executeScript("window.scrollBy(0,300)");
-	    	js.executeScript("arguments[0].scrollIntoView(true);", checkbtn1);
-	    	wait.until(ExpectedConditions.elementToBeClickable(checkbtn1));
-	    	checkbtn1.click();
-	    	js.executeScript("window.scrollBy(0,100)");
-	    	wait.until(ExpectedConditions.elementToBeClickable(checkbtn2));
-	    	checkbtn2.click();
-	    	
-	    	
+	    	wait.until(ExpectedConditions.elementToBeClickable(address));
+	    	address.clear();
+	    	address.click();
+	    	address.sendKeys(homeaddress);
+	    	wait.until(ExpectedConditions.elementToBeClickable(city));
+	    	city.clear();
+	    	city.click();
+	    	city.sendKeys(homecity);
+	    	new Select(state).selectByVisibleText("California");
+	    	postcode.clear();
+	    	postcode.click();
+	    	postcode.sendKeys(pincode);
+	    	new Select(country).selectByVisibleText("United States");	    	
 	    }
+	    	
+	    
 	    
 	    public void addAddress(String homeaddress,  String pincode,String homecity) {
 	    	

@@ -1,7 +1,5 @@
-package General;
 
-
-
+package Capstone_project.Capstone_project;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -33,6 +31,8 @@ public class prestaloginandsignup1 {
 	@FindBy(xpath="//*[@id='_desktop_ps_customersignin']/div/div/a")WebElement signin;
 	@FindBy(xpath="//*[@id=\"_mobile_ps_customersignin\"]/div/div/a/span") WebElement signin1;
 	@FindBy(xpath="//div/a[@class = \"btn btn-outline-primary\"]")WebElement create_your_account;
+	
+	
 	//signup page locators
 	@FindBy(id="field-id_gender_1")WebElement gender_Mr;
 	@FindBy(id="field-id_gender_2")WebElement gender_Mrs;
@@ -45,6 +45,7 @@ public class prestaloginandsignup1 {
 	@FindBy(xpath="//button[@class='btn btn-primary form-control-submit']")WebElement createaccount;
 	@FindBy(xpath="//a[contains(normalize-space(),'Sign out')]")WebElement signout;
 	@FindBy(xpath="//button[@id='userMenuButton']")WebElement usermenu;
+	
 	//signin page locators 
 	@FindBy(xpath="//input[@aria-label='Email']")WebElement login_email;
 	@FindBy(xpath="//input[@id='field-password']")WebElement login_password;
@@ -53,15 +54,13 @@ public class prestaloginandsignup1 {
 	@FindBy(xpath="//*[@id=\"content\"]/section[3]/div/div[2]/a") WebElement allproducts;
 	@FindBy(xpath="//input[@name='s']") WebElement search;
 	@FindBy(xpath="/p[text()=\"The best is yet to come' Framed poster\"]") WebElement frame;
+	
+	// property page elements
 	@FindBy(xpath="//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div[2]/div[2]/button") WebElement add_to_cart;
     @FindBy(xpath="//a[text()=\"Proceed to checkout\"]") WebElement proceed_checkout;
     @FindBy(xpath = "//article[@data-id-product=3]") WebElement product;
-   // @FindBy(xpath="(//button[contains(normalize-space(.), 'Add to cart')])[1]") WebElement add_to_cart;
-   // @FindBy(xpath="//a[text()=\"Proceed to checkout\"]") WebElement proceed_checkout;
     @FindBy(xpath ="//a[text()='Proceed to checkout']") WebElement Checkout;
     @FindBy(xpath="//a[contains(@href,'newAddress=delivery')]") WebElement AddNewAddress;
-   // @FindBy(id ="firstname") WebElement firstname;
-   // @FindBy(id="lastname")WebElement lastname;
     @FindBy(id="field-address1")WebElement address;
     @FindBy(id="field-id_state") WebElement state;
     @FindBy(id="field-postcode")WebElement postcode;
@@ -75,8 +74,6 @@ public class prestaloginandsignup1 {
 	@FindBy(id="payment-option-3") WebElement Check;
 	@FindBy(xpath="//input[@type='checkbox' and @name='conditions_to_approve[terms-and-conditions]']") WebElement Termsandconditions;
     @FindBy(xpath = "//button[@type='submit' and contains(text(),'Place Order')]") WebElement orderbutton;
-
-    //@FindBy(css="button[name='confirm-addresses']") WebElement continueAddressBtn;
 
 
    
@@ -176,7 +173,7 @@ public class prestaloginandsignup1 {
 	
 	public void selectallproducts() throws InterruptedException {
 		//wait.until(ExpectedConditions.visibilityOf(allproducts));
-		//js.executeScript("arguments[0].scrollIntoView(true);", allproducts);
+//		js.executeScript("arguments[0].scrollIntoView(true);", allproducts);
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfAllElements(allproducts));
 	     js.executeScript("arguments[0].scrollIntoView(true);",allproducts);
