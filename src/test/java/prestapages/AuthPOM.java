@@ -1,4 +1,4 @@
-package Capstone_project.Capstone_project;
+package prestapages;
 
 import java.time.Duration;
 
@@ -18,12 +18,13 @@ public class AuthPOM {
 	
 	
 	public AuthPOM(WebDriver driver) {
-		driver=new ChromeDriver();
+		//driver=new ChromeDriver();
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
 		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		js=(JavascriptExecutor)driver;
-		driver.get("https://wasteful-leg.demo.prestashop.com");
+		driver.get("https://demo.prestashop.com/#/en/front");
+		driver.manage().window().maximize();
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 
 	}
@@ -128,6 +129,8 @@ public class AuthPOM {
 		
 		
 	}
+	
+	
 
  
 }
