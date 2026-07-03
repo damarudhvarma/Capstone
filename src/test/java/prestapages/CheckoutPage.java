@@ -1,12 +1,10 @@
-package Capstone_project.Capstone_project;
+package prestapages;
+
 import java.time.Duration;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -29,14 +27,14 @@ public class CheckoutPage {
 	    	js=(JavascriptExecutor)driver;
 	        this.wait = new WebDriverWait(driver, Duration.ofSeconds(20)); // Initialize explicit wait
 	        PageFactory.initElements(driver, this);
-//	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
+	        wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 	        driver.manage().window().maximize();
 	        js.executeScript("window.scrollBy(0,700)");
 
 	    }
 	  // Added for explicit wait tracking
 
-public void waitForPageLoad() {
+public void waitForPageLoad() throws InterruptedException {
 
     WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
 
@@ -44,9 +42,11 @@ public void waitForPageLoad() {
         ((JavascriptExecutor) driver)
             .executeScript("return document.readyState")
             .equals("complete"));
+    Thread.sleep(1000);
 }
 
-	    
+	    @FindBy(xpath="//h2[text()='Custom Text Block']")WebElement customtextbox;
+	    @FindBy(xpath="//span[text()='Hide']") WebElement hide;
 	    @FindBy(xpath = "//article[@data-id-product=3]//a") WebElement product;
 	    @FindBy(xpath="//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div[2]/div[2]/button") WebElement add_to_cart;
 	    @FindBy(xpath="//a[text()=\"Proceed to checkout\"]") WebElement proceed_checkout;
@@ -71,13 +71,20 @@ WebElement cart;
 
 	    @FindBy(xpath="//*[@id=\"customer-form\"]/footer/button") WebElement continueOnPersonalInfo;
 	    
-
+	   public void clickHide() throws InterruptedException {
+		   Thread.sleep(1000);
+			wait.until(ExpectedConditions.visibilityOf(hide));
+			hide.click();
+		}
 		public void selectProduct() throws InterruptedException {
-			Thread.sleep(5000);
-			js.executeScript("window.scrollBy(0,400);");
-//			wait.until(ExpectedConditions.visibilityOfAllElements(product));
+			Thread.sleep(2000);
+			js.executeScript("window.scrollBy(0,200);");
+			 js.executeScript("arguments[0].scrollIntoView(true);",customtextbox);
+			js.executeScript("window.scrollBy(0,200);");
+			 js.executeScript("arguments[0].scrollIntoView(true);", product);
+			wait.until(ExpectedConditions.visibilityOfAllElements(product));
 
-WebElement ele =
+/*WebElement ele =
         wait.until(ExpectedConditions.visibilityOf(product));
 
 js.executeScript(
@@ -90,15 +97,15 @@ System.out.println(
 
 Thread.sleep(2000);
 
-ele.click();
+ele.click();*/
 
-		     js.executeScript("arguments[0].scrollIntoView(true);", product);
+		     //js.executeScript("arguments[0].scrollIntoView(true);", product);
 		     System.out.println("Clicking Product");
 		     wait.until(ExpectedConditions.elementToBeClickable(product)).click();
 		    waitForPageLoad();
 		    Thread.sleep(2000);
 		    js.executeScript("window.scrollBy(0,200)");
-//		    js.executeScript("arguments[0].scrollIntoView(true);", add_to_cart);
+		    js.executeScript("arguments[0].scrollIntoView(true);", add_to_cart);
 		    Thread.sleep(1000);
 		    wait.until(ExpectedConditions.elementToBeClickable(add_to_cart)).click();
 		    waitForPageLoad();
@@ -180,8 +187,7 @@ ele.click();
 	    
 	   
 	   
-	   
-	    
+	  
 
 
 }
