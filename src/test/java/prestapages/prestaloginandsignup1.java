@@ -1,5 +1,4 @@
-
-package Capstone_project.Capstone_project;
+package prestapages;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -172,11 +171,13 @@ public class prestaloginandsignup1 {
 	}
 	
 	public void selectallproducts() throws InterruptedException {
-		//wait.until(ExpectedConditions.visibilityOf(allproducts));
-//		js.executeScript("arguments[0].scrollIntoView(true);", allproducts);
 		Thread.sleep(5000);
 		wait.until(ExpectedConditions.visibilityOfAllElements(allproducts));
-	     js.executeScript("arguments[0].scrollIntoView(true);",allproducts);
+
+js.executeScript(
+    "arguments[0].scrollIntoView({block:'center'});",
+    allproducts);
+
 	    wait.until(ExpectedConditions.elementToBeClickable(allproducts)).click();
 	    //waitForPageLoad();
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));

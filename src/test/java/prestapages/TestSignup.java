@@ -39,7 +39,7 @@ public class TestSignup {
  
         pr.signup_lastname("Doe");
  
-        pr.signup_email("johndoeacdef@example.com");
+        pr.signup_email("johndoeaef@example.com");
  
         pr.signup_password("12342abcdteam");
  

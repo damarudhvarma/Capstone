@@ -7,7 +7,9 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import Capstone_project.Capstone_project.prestaloginandsignup1;
+import prestapages.FeaturedProductsPOM;
+import prestapages.checkoutandshipping;
+import prestapages.prestaloginandsignup1;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -17,10 +19,13 @@ public class ShoppingStepDef {
 
 	 JavascriptExecutor js;
 	 prestaloginandsignup1 pr;
+	 FeaturedProductsPOM fs;
+	 checkoutandshipping c;
 
 @Given("User Signups")
 public void user_signups() throws InterruptedException {
 	 driver = new ChromeDriver();
+
 
      driver.manage().window().maximize();
 pr=new prestaloginandsignup1(driver);
@@ -28,23 +33,42 @@ pr=new prestaloginandsignup1(driver);
 	pr.signup();
  pr.signup_firstname("John");
  pr.signup_lastname("Doe");
- pr.signup_email("johndoeacdef@example.com");
+ pr.signup_email("ab@example.com");
  pr.signup_password("12342abcdteam");
  Thread.sleep(2000);
  pr.signup_checkbox();
  pr.signup_create();
+ pr.signout();
+
+
+ pr.signin("ab@example.com","12342abcdteam");
+  Thread.sleep(2000);
+    // pr.checkSignin();
+     Thread.sleep(3000);
+     JavascriptExecutor js2=(JavascriptExecutor)driver;
+     js2.executeScript("window.scrollBy(0,1000)");
+     System.out.println("scrolled");
+  Thread.sleep(2000);
+  new WebDriverWait(driver, Duration.ofSeconds(15))
+  .until(webDriver -> ((JavascriptExecutor) webDriver)
+  .executeScript("return document.readyState").equals("complete"));
 }
 
 @And("user clicks on All featured products")
 public void user_clicks_on_all_featured_products() throws InterruptedException {
-	Thread.sleep(3000);
- Thread.sleep(2000);
- new WebDriverWait(driver, Duration.ofSeconds(15))
- .until(webDriver -> ((JavascriptExecutor) webDriver)
- .executeScript("return document.readyState").equals("complete"));
-	Thread.sleep(2000);
-    
-    pr.selectallproducts();
+	
+	c= new checkoutandshipping(driver);
+	System.out.println("in checkout");
+	
+    c.selectallproducts();
+//	Thread.sleep(3000);
+// Thread.sleep(2000);
+// new WebDriverWait(driver, Duration.ofSeconds(15))
+// .until(webDriver -> ((JavascriptExecutor) webDriver)
+// .executeScript("return document.readyState").equals("complete"));
+//	Thread.sleep(2000);
+//    
+//    pr.selectallproducts();
 }
 
 @And("search for the product")
@@ -115,5 +139,39 @@ public void order_should_be_placed_successfully() {
    System.out.println("Sucessfully Placed the order");
 }
 
+// for featured products
+//
+//@Given("User launches Prestashop application")
+//public void user_launches_prestashop_application() {
+//	driver = new ChromeDriver();
+//	driver.get("https://demo.prestashop.com");
+//	fs= new FeaturedProductsPOM(driver);
+//
+//    driver.manage().window().maximize();
+//
+//    driver.manage()
+//            .timeouts()
+//            .implicitlyWait(Duration.ofSeconds(5));
+//   
+//}
+//
+//
+//@And("user clicks on All featured products")
+//public void user_clicks_all_featured_products() throws InterruptedException {
+//	new WebDriverWait(driver, Duration.ofSeconds(15))
+//    .until(webDriver -> ((JavascriptExecutor) webDriver)
+//    .executeScript("return document.readyState").equals("complete"));
+//	fs.allFeatures();
+//}
+//
+//@And("user selects a category")
+//public void user_selects_a_category() throws InterruptedException {
+//	fs.selectCategory();
+//}
+//
+//@Then("sort products")
+//public void sort_products() throws InterruptedException {
+//	fs.sortBy();
+//}
 
 }

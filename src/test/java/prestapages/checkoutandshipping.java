@@ -23,7 +23,7 @@ public class checkoutandshipping {
 		//driver=new ChromeDriver();
 		this.driver=driver;
 		PageFactory.initElements(driver, this);
-		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
+		wait=new WebDriverWait(driver,Duration.ofSeconds(20));
 		js=(JavascriptExecutor)driver;
 		//driver.get("https://demo.prestashop.com/#/en/front");
 		//driver.manage().window().maximize();
@@ -69,8 +69,8 @@ public class checkoutandshipping {
 		//wait.until(ExpectedConditions.visibilityOf(allproducts));
 		//js.executeScript("arguments[0].scrollIntoView(true);", allproducts);
 		Thread.sleep(5000);
-		wait.until(ExpectedConditions.visibilityOfAllElements(allproducts));
 	     js.executeScript("arguments[0].scrollIntoView(true);",allproducts);
+	     wait.until(ExpectedConditions.visibilityOfAllElements(allproducts));
 	    wait.until(ExpectedConditions.elementToBeClickable(allproducts)).click();
 	    //waitForPageLoad();
 	    WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
