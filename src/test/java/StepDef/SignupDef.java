@@ -4,7 +4,8 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
-import Capstone_project.Capstone_project.prestaloginandsignup1;
+import hooks.Hooks;
+import prestapages.prestaloginandsignup1;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -18,10 +19,10 @@ prestaloginandsignup1 pr;
 
 @Given("User launches Prestashop application")
 public void user_launches_prestashop_application() {
-	driver = new ChromeDriver();
+	
 
-    driver.manage().window().maximize();
-    pr=new prestaloginandsignup1(driver);
+	pr=new prestaloginandsignup1(Hooks.driver);
+ 
    
   
 }

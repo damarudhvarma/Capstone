@@ -1,4 +1,4 @@
-package Capstone_project.Capstone_project;
+package prestapages;
 
 import java.time.Duration;
 

@@ -5,7 +5,7 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		features = "src/test/java/Features/signup.feature",
-		glue = {"StepDef"},
+		glue = {"StepDef","hooks"},
 		monochrome = true,
 		plugin = {
                 "pretty",

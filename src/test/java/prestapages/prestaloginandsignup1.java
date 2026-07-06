@@ -1,5 +1,5 @@
 
-package Capstone_project.Capstone_project;
+package prestapages;
 import java.time.Duration;
 
 import org.openqa.selenium.By;
@@ -24,7 +24,7 @@ public class prestaloginandsignup1 {
 		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		js=(JavascriptExecutor)driver;
 		//driver=new ChromeDriver();
-		driver.get("https://demo.prestashop.com/#/en/front");
+//		driver.get("https://demo.prestashop.com/#/en/front");
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 
 	}
