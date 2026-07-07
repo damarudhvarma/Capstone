@@ -1,6 +1,7 @@
 package StepDef;
 
 import org.openqa.selenium.JavascriptExecutor;
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -67,6 +68,12 @@ public void user_clicks_on_create_account() throws InterruptedException {
 public void user_account_should_be_created_successfully() throws InterruptedException {
 	Thread.sleep(2000);
 	pr.signout();
+}
+
+
+@Attachment("Step Screenshot View")
+public byte[] allureSaveScreenshot(byte[] screenshot) {
+    return screenshot;
 }
 
 
