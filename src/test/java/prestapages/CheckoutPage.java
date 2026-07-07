@@ -47,7 +47,7 @@ public void waitForPageLoad() throws InterruptedException {
 
 	    @FindBy(xpath="//h2[text()='Custom Text Block']")WebElement customtextbox;
 	    @FindBy(xpath="//span[text()='Hide']") WebElement hide;
-	    @FindBy(xpath = "//article[@data-id-product=3]//a") WebElement product;
+	    @FindBy(xpath = "(//a[@class='product-miniature__title' and normalize-space()='Hummingbird printed t-shirt'])[1]") WebElement product;
 	    @FindBy(xpath="//*[@id=\"add-to-cart-or-refresh\"]/div[2]/div[2]/div[2]/button") WebElement add_to_cart;
 	    @FindBy(xpath="//a[text()=\"Proceed to checkout\"]") WebElement proceed_checkout;
 	    @FindBy(xpath="//div[@class='modal-header']//p//i") WebElement add_to_cart_modal;
@@ -77,12 +77,13 @@ WebElement cart;
 			hide.click();
 		}
 		public void selectProduct() throws InterruptedException {
-			Thread.sleep(2000);
-			js.executeScript("window.scrollBy(0,200);");
+			Thread.sleep(4000);
+			//js.executeScript("window.scrollBy(0,200);");
 			 js.executeScript("arguments[0].scrollIntoView(true);",customtextbox);
-			js.executeScript("window.scrollBy(0,200);");
+			//js.executeScript("window.scrollBy(0,100);");
+			Thread.sleep(3000);
 			 js.executeScript("arguments[0].scrollIntoView(true);", product);
-			wait.until(ExpectedConditions.visibilityOfAllElements(product));
+			//wait.until(ExpectedConditions.visibilityOfAllElements(product));
 
 /*WebElement ele =
         wait.until(ExpectedConditions.visibilityOf(product));
@@ -101,7 +102,8 @@ ele.click();*/
 
 		     //js.executeScript("arguments[0].scrollIntoView(true);", product);
 		     System.out.println("Clicking Product");
-		     wait.until(ExpectedConditions.elementToBeClickable(product)).click();
+		     wait.until(ExpectedConditions.elementToBeClickable(product));
+		     product.click();
 		    waitForPageLoad();
 		    Thread.sleep(2000);
 		    js.executeScript("window.scrollBy(0,200)");

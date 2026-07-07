@@ -5,9 +5,9 @@ Feature: PrestaShop User Shopping Flow
     When User clicks on Sign In
     And User clicks on Create Your Account
     And User selects gender as "Mr"
-    And User enters first name "Damarudh"
-    And User enters last name "Varma"
-    And User enters email "damarudh@test.com"
+    And User enters first name "xyz"
+    And User enters last name "zxy"
+    And User enters email "xyz@test.com"
     And User enters password "Demo@123"
     And User accepts checkboxes
     And User clicks on Create Account
@@ -16,7 +16,7 @@ Feature: PrestaShop User Shopping Flow
 
   Scenario: User signs in successfully
     Given User launches Prestashop application
-    When User logs in with email "damarudh@test.com" and password "Demo@123"
+    When User logs in with email "xyz@test.com" and password "Demo@123"
     Then User should be logged in successfully
 
 
@@ -54,4 +54,4 @@ Feature: PrestaShop User Shopping Flow
 
     Examples:
       | fname    | lname | address           | postcode | city      | payment |
-      | Damarudh | Varma | Hyderabad Colony  | 90001    | California| bank    |
+      | xyz | zyx | Hyderabad Colony  | 90001    | California| bank    |

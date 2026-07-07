@@ -14,7 +14,7 @@ And User clicks Continue To Payment
 And User selects payment mode "<payment>"
 And User confirms the order
 Then Order should be placed successfully
-
+ 
 Examples:
       | fname    | lname | address           | postcode | city      | payment |
       | Damarudh | Varma | Hyderabad Colony  | 90001    | California| cod    |

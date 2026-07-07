@@ -69,10 +69,16 @@ public class TestSignup {
         .until(webDriver -> ((JavascriptExecutor) webDriver)
         .executeScript("return document.readyState").equals("complete"));
         
+        /*CheckoutPage ch=new CheckoutPage(driver);
+        ch.waitForPageLoad();
+        Thread.sleep(1000);
+        ch.selectProduct();
+        ch.clickCheckout();*/
+        
 //    
 //       // pr.clickHide();
         
-        checkoutandshipping c=new checkoutandshipping(driver);
+       checkoutandshipping c=new checkoutandshipping(driver);
         Thread.sleep(2000);
         c.selectallproducts();
         c.clickSearch();

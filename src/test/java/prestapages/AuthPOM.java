@@ -24,7 +24,7 @@ public class AuthPOM {
 		PageFactory.initElements(driver, this);
 		wait=new WebDriverWait(driver,Duration.ofSeconds(10));
 		js=(JavascriptExecutor)driver;
-		driver.get("https://demo.prestashop.com/#/en/front");
+		//driver.get("https://demo.prestashop.com/#/en/front");
 		driver.manage().window().maximize();
 		wait.until(ExpectedConditions.frameToBeAvailableAndSwitchToIt("framelive"));
 
