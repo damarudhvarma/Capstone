@@ -1,26 +1,34 @@
 package StepDef;
 
+import java.io.File;
+import java.io.IOException;
 import java.time.Duration;
 
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import com.google.common.io.Files;
+
 import prestapages.FeaturedProductsPOM;
 import prestapages.checkoutandshipping;
+import prestapages.orderinfo;
 import prestapages.prestaloginandsignup1;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 
 public class ShoppingStepDef {
-	 WebDriver driver;
+	static  WebDriver driver;
 
 	 JavascriptExecutor js;
 	 prestaloginandsignup1 pr;
 	 FeaturedProductsPOM fs;
 	 checkoutandshipping c;
+	 orderinfo or;
 
 @Given("User Signups")
 public void user_signups() throws InterruptedException {
@@ -33,7 +41,7 @@ pr=new prestaloginandsignup1(driver);
 	pr.signup();
  pr.signup_firstname("John");
  pr.signup_lastname("Doe");
- pr.signup_email("ab@example.com");
+ pr.signup_email("abc@example.com");
  pr.signup_password("12342abcdteam");
  Thread.sleep(2000);
  pr.signup_checkbox();
@@ -41,7 +49,7 @@ pr=new prestaloginandsignup1(driver);
  pr.signout();
 
 
- pr.signin("ab@example.com","12342abcdteam");
+ pr.signin("abc@example.com","12342abcdteam");
   Thread.sleep(2000);
     // pr.checkSignin();
      Thread.sleep(3000);
@@ -61,14 +69,6 @@ public void user_clicks_on_all_featured_products() throws InterruptedException {
 	System.out.println("in checkout");
 	
     c.selectallproducts();
-//	Thread.sleep(3000);
-// Thread.sleep(2000);
-// new WebDriverWait(driver, Duration.ofSeconds(15))
-// .until(webDriver -> ((JavascriptExecutor) webDriver)
-// .executeScript("return document.readyState").equals("complete"));
-//	Thread.sleep(2000);
-//    
-//    pr.selectallproducts();
 }
 
 @And("search for the product")
@@ -135,43 +135,38 @@ public void user_confirms_the_order() {
 }
 
 @Then("Order should be placed successfully")
-public void order_should_be_placed_successfully() {
+public void order_should_be_placed_successfully() throws IOException, InterruptedException {
+	Thread.sleep(3000);
+	File src =
+		        ((TakesScreenshot) driver)
+		        .getScreenshotAs(OutputType.FILE);
+
+		    Files.copy(src, new File("target/confirm-order"+System.currentTimeMillis()+".png"));
+
    System.out.println("Sucessfully Placed the order");
+   
 }
 
-// for featured products
-//
-//@Given("User launches Prestashop application")
-//public void user_launches_prestashop_application() {
-//	driver = new ChromeDriver();
-//	driver.get("https://demo.prestashop.com");
-//	fs= new FeaturedProductsPOM(driver);
-//
-//    driver.manage().window().maximize();
-//
-//    driver.manage()
-//            .timeouts()
-//            .implicitlyWait(Duration.ofSeconds(5));
-//   
-//}
-//
-//
-//@And("user clicks on All featured products")
-//public void user_clicks_all_featured_products() throws InterruptedException {
-//	new WebDriverWait(driver, Duration.ofSeconds(15))
-//    .until(webDriver -> ((JavascriptExecutor) webDriver)
-//    .executeScript("return document.readyState").equals("complete"));
-//	fs.allFeatures();
-//}
-//
-//@And("user selects a category")
-//public void user_selects_a_category() throws InterruptedException {
-//	fs.selectCategory();
-//}
-//
-//@Then("sort products")
-//public void sort_products() throws InterruptedException {
-//	fs.sortBy();
-//}
+// users order details 
+
+
+@Given("user goes to my orders section")
+public void user_goes_to_my_orders_section() throws InterruptedException {
+	or=new orderinfo(driver);
+	Thread.sleep(3000);
+	or.navigateToOrders();
+	
+}
+
+@And("clicks on order details")
+public void clicks_on_order_details() throws InterruptedException {
+
+	or.selectOrderForDetails();
+}
+
+@Then("check with order detials")
+public void check_with_order_detials() {
+or.getOrderDetails();
+}
 
 }

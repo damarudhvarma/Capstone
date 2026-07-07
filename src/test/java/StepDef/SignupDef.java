@@ -34,23 +34,23 @@ public void user_clicks_on_sign_in() throws InterruptedException {
 
 
 @And("User enters first name {string}")
-public void user_enters_first_name(String string) {
-	pr.signup_firstname(string);
+public void user_enters_first_name(String fname) {
+	pr.signup_firstname(fname);
 }
 
 @And("User enters last name {string}")
-public void user_enters_last_name(String string) {
-	pr.signup_lastname(string);
+public void user_enters_last_name(String lname) {
+	pr.signup_lastname(lname);
 }
 
 @And("User enters email {string}")
-public void user_enters_email(String string) throws InterruptedException {
-	 pr.signup_email(string);
+public void user_enters_email(String email) throws InterruptedException {
+	 pr.signup_email(email);
 }
 
 @And("User enters password {string}")
-public void user_enters_password(String string) throws InterruptedException {
-    pr.signup_password(string);
+public void user_enters_password(String password) throws InterruptedException {
+    pr.signup_password(password);
 }
 
 @And("User accepts checkboxes")

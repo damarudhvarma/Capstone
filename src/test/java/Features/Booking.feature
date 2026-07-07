@@ -19,4 +19,10 @@ Examples:
       | fname    | lname | address           | postcode | city      | payment |
       | Damarudh | Varma | Hyderabad Colony  | 90001    | California| cod    |
       
+
+Scenario: User order booking verification
+Given user goes to my orders section
+And clicks on order details
+Then check with order detials
+
   
