@@ -40,7 +40,7 @@ public class FeaturedProductsPOM {
 ((JavascriptExecutor)driver).executeScript(
         "arguments[0].scrollIntoView({block:'center'});",
         All_featured);
-
+Thread.sleep(2000);
 wait.until(ExpectedConditions.elementToBeClickable(All_featured)).click();
 //		js.executeScript("window.scrollBy(0,500);");
 //		

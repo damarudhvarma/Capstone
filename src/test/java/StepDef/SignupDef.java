@@ -1,6 +1,7 @@
 package StepDef;
 
 import org.openqa.selenium.JavascriptExecutor;
+import io.qameta.allure.Attachment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -12,63 +13,62 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
 public class SignupDef {
- WebDriver driver;
+	WebDriver driver;
 
-JavascriptExecutor js;
-prestaloginandsignup1 pr;
+	JavascriptExecutor js;
+	prestaloginandsignup1 pr;
 
-@Given("User launches Prestashop application")
-public void user_launches_prestashop_application() {
-	
+	@Given("User launches Prestashop application")
+	public void user_launches_prestashop_application() {
 
-	pr=new prestaloginandsignup1(Hooks.driver);
- 
-   
-  
-}
+		pr = new prestaloginandsignup1(Hooks.driver);
 
-@When("User clicks on Sign In")
-public void user_clicks_on_sign_in() throws InterruptedException {
-	 pr.signup();
-}
+	}
 
+	@When("User clicks on Sign In")
+	public void user_clicks_on_sign_in() throws InterruptedException {
+		pr.signup();
+	}
 
+	@And("User enters first name {string}")
+	public void user_enters_first_name(String string) {
+		pr.signup_firstname(string);
+	}
 
-@And("User enters first name {string}")
-public void user_enters_first_name(String string) {
-	pr.signup_firstname(string);
-}
+	@And("User enters last name {string}")
+	public void user_enters_last_name(String string) {
+		pr.signup_lastname(string);
+	}
 
-@And("User enters last name {string}")
-public void user_enters_last_name(String string) {
-	pr.signup_lastname(string);
-}
+	@And("User enters email {string}")
+	public void user_enters_email(String string) throws InterruptedException {
+		pr.signup_email(string);
+	}
 
-@And("User enters email {string}")
-public void user_enters_email(String string) throws InterruptedException {
-	 pr.signup_email(string);
-}
+	@And("User enters password {string}")
+	public void user_enters_password(String string) throws InterruptedException {
+		pr.signup_password(string);
+	}
 
-@And("User enters password {string}")
-public void user_enters_password(String string) throws InterruptedException {
-    pr.signup_password(string);
-}
+	@And("User accepts checkboxes")
+	public void user_accepts_checkboxes() throws InterruptedException {
+		pr.signup_checkbox();
+	}
 
-@And("User accepts checkboxes")
-public void user_accepts_checkboxes() throws InterruptedException {
-	 pr.signup_checkbox();
-}
+	@And("User clicks on Create Account")
+	public void user_clicks_on_create_account() throws InterruptedException {
+		pr.signup_create();
+	}
 
-@And("User clicks on Create Account")
-public void user_clicks_on_create_account() throws InterruptedException {
-	pr.signup_create();
-}
+	@Then("User account should be created successfully")
+	public void user_account_should_be_created_successfully() throws InterruptedException {
+		Thread.sleep(2000);
+		pr.signout();
+	}
 
-@Then("User account should be created successfully")
-public void user_account_should_be_created_successfully() throws InterruptedException {
-	Thread.sleep(2000);
-	pr.signout();
-}
-
+	@Attachment("Step Screenshot View")
+	public byte[] allureSaveScreenshot(byte[] screenshot) {
+		return screenshot;
+	}
 
 }

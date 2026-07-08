@@ -9,7 +9,8 @@ import io.cucumber.testng.CucumberOptions;
 		monochrome = true,
 		plugin = {
                 "pretty",
-                "html:target/PrestoSop.html"
+                "html:target/PrestoSop.html",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 
 		)

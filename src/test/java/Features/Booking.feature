@@ -18,3 +18,5 @@ Then Order should be placed successfully
 Examples:
       | fname    | lname | address           | postcode | city      | payment |
       | Damarudh | Varma | Hyderabad Colony  | 90001    | California| cod    |
+      
+  
