@@ -5,11 +5,12 @@ import io.cucumber.testng.CucumberOptions;
 
 @CucumberOptions(
 		features = "src/test/java/Features/signup.feature",
-		glue = {"StepDef"},
+		glue = {"StepDef","hooks"},
 		monochrome = true,
 		plugin = {
                 "pretty",
-                "html:target/PrestoSop.html"
+                "html:target/PrestoSop.html",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 
 		)
