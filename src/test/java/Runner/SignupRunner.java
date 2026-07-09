@@ -7,6 +7,7 @@ import io.cucumber.testng.CucumberOptions;
 		features = "src/test/java/Features/signup.feature",
 		glue = {"StepDef","hooks"},
 		monochrome = true,
+		name= {"User signs up successfully"},
 		plugin = {
                 "pretty",
                 "html:target/PrestoSop.html",

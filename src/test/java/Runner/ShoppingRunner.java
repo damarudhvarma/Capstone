@@ -8,9 +8,11 @@ import io.cucumber.testng.CucumberOptions;
 		features = "src/test/java/Features/Booking.feature",
 		glue = {"StepDef"},
 		monochrome = true,
+		name = {"user login search and buys a product","User order booking verification"},
 		plugin = {
                 "pretty",
-                "html:target/shopping.html"
+                "html:target/shopping.html",
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 
 		)

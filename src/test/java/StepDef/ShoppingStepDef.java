@@ -20,7 +20,7 @@ import prestapages.prestaloginandsignup1;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
-
+import io.qameta.allure.Attachment;
 public class ShoppingStepDef {
 	static  WebDriver driver;
 
@@ -40,7 +40,7 @@ public class ShoppingStepDef {
 	pr.signup();
  pr.signup_firstname("John");
  pr.signup_lastname("Doe");
- pr.signup_email("abc@example.com");
+ pr.signup_email("ocb@example.com");
  pr.signup_password("12342abcdteam");
  Thread.sleep(2000);
  pr.signup_checkbox();
@@ -48,7 +48,7 @@ public class ShoppingStepDef {
  pr.signout();
 
 
- pr.signin("abc@example.com","12342abcdteam");
+ pr.signin("ocb@example.com","12342abcdteam");
   Thread.sleep(2000);
     // pr.checkSignin();
      Thread.sleep(3000);
@@ -167,4 +167,31 @@ public void check_with_order_detials() {
 or.getOrderDetails();
 }
 
+@io.cucumber.java.AfterStep
+public void captureScreenshotAfterEveryStep(io.cucumber.java.Scenario scenario) {
+    if (driver != null) {
+        try {
+            // Cast driver instance to capture raw screenshot bytes
+            org.openqa.selenium.TakesScreenshot ts = (org.openqa.selenium.TakesScreenshot) driver;
+            byte[] screenshotBytes = ts.getScreenshotAs(org.openqa.selenium.OutputType.BYTES);
+            
+            // Determine a clean label based on step status
+            String statusLabel = scenario.isFailed() ? "Failed_Step_View" : "Passed_Step_View";
+            
+            // Attach the screenshot directly underneath the current step row
+            scenario.attach(screenshotBytes, "image/png", statusLabel);
+            
+        } catch (Exception e) {
+            System.out.println("Failed to capture step screenshot: " + e.getMessage());
+        }
+    }
 }
+ 
+@Attachment("Step Screenshot View")
+public byte[] allureSaveScreenshot(byte[] screenshot) {
+    return screenshot;
+}
+ 
+ 
+}
+

@@ -5,7 +5,9 @@ import io.qameta.allure.Attachment;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
+import base.BaseClass;
 import hooks.Hooks;
+//import hooks.Hooks;
 import prestapages.prestaloginandsignup1;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
@@ -20,8 +22,7 @@ public class SignupDef {
 
 	@Given("User launches Prestashop application")
 	public void user_launches_prestashop_application() {
-
-		pr = new prestaloginandsignup1(Hooks.driver);
+		pr = new prestaloginandsignup1(BaseClass.getDriver());
 
 	}
 
@@ -30,10 +31,7 @@ public class SignupDef {
 		pr.signup();
 	}
 
-	@And("User enters first name {string}")
-	public void user_enters_first_name(String string) {
-		pr.signup_firstname(string);
-	}
+
 
 @And("User enters first name {string}")
 public void user_enters_first_name(String fname) {
@@ -48,6 +46,11 @@ public void user_enters_last_name(String lname) {
 @And("User enters email {string}")
 public void user_enters_email(String email) throws InterruptedException {
 	 pr.signup_email(email);
+}
+
+@And("User accepts checkboxes")
+public void user_accepts_checkboxes() throws InterruptedException {
+    pr.signup_checkbox();
 }
 
 @And("User enters password {string}")
