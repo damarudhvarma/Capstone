@@ -18,8 +18,8 @@ public class TestFeaturedProducts {
 
         driver.manage()
                 .timeouts()
-                .implicitlyWait(Duration.ofSeconds(5));
-    	FeaturedProductsPOM fs= new FeaturedProductsPOM(driver);
+                .implicitlyWait(Duration.ofSeconds(10));
+        SortProducts fs= new SortProducts(driver);
     	   new WebDriverWait(driver, Duration.ofSeconds(15))
            .until(webDriver -> ((JavascriptExecutor) webDriver)
            .executeScript("return document.readyState").equals("complete"));

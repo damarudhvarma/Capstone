@@ -111,6 +111,8 @@ public class prestaloginandsignup1 {
 	WebElement Termsandconditions;
 	@FindBy(xpath = "//button[@type='submit' and contains(text(),'Place Order')]")
 	WebElement orderbutton;
+	
+	@FindBy(xpath="//div//h2[text()='Custom Text Block']") WebElement homePageElement;
 
 	public void signup() throws InterruptedException {
 		Thread.sleep(2000);
@@ -133,6 +135,15 @@ public class prestaloginandsignup1 {
 		gender_Mr.click();
 		// wait.until(ExpectedConditions.elementToBeClickable(gender_Mrs));
 		// gender_Mrs.click();
+	}
+	
+	public boolean isHomePageElementPresent() {
+	    try {
+	        wait.until(ExpectedConditions.visibilityOf(homePageElement));
+	        return homePageElement.isDisplayed();
+	    } catch (Exception e) {
+	        return false;
+	    }
 	}
 
 	public void signup_firstname(String fname) {
@@ -175,9 +186,17 @@ public class prestaloginandsignup1 {
 	}
 
 	public void signup_create() throws InterruptedException {
-		Thread.sleep(1000);
-		js.executeScript("arguments[0].scrollIntoView(true);", createaccount);
-		createaccount.click();
+	    Thread.sleep(1000);
+
+	    js.executeScript(
+	        "arguments[0].scrollIntoView({block:'center'});",
+	        createaccount);
+
+	    Thread.sleep(2000);
+
+	    js.executeScript(
+	        "arguments[0].click();",
+	        createaccount);
 	}
 
 	public void signout() throws InterruptedException {

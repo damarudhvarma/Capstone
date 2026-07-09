@@ -16,3 +16,9 @@ Examples:
 |fname|lname|email|password|
 |Damarudh|Varma|damarudh@test.com|Test@1234$|
 |abc|Def|abd@test.com|Test@12$|
+
+
+Scenario: Registration with mandatory fields empty
+  Given User navigates to registration page
+  When User submits registration form without entering mandatory details
+  Then Registration validation message should be displayed

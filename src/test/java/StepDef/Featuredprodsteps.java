@@ -28,7 +28,6 @@ public class Featuredprodsteps {
 	    // Write code here that turns the phrase above into concrete actions
 		 driver = new ChromeDriver();
  
- 
 	     driver.manage().window().maximize();
 	     new WebDriverWait(driver, Duration.ofSeconds(15))
 	        .until(webDriver -> ((JavascriptExecutor) webDriver)
@@ -96,8 +95,6 @@ public class Featuredprodsteps {
 	    // Write code here that turns the phrase above into concrete actions
 		 ch.confirmPayment();
 	}
-
-
 @io.cucumber.java.AfterStep
 public void captureScreenshotAfterEveryStep(io.cucumber.java.Scenario scenario) {
     if (driver != null) {

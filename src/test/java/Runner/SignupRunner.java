@@ -7,10 +7,14 @@ import io.cucumber.testng.CucumberOptions;
 		features = "src/test/java/Features/signup.feature",
 		glue = {"StepDef","hooks"},
 		monochrome = true,
-		name= {"User signs up successfully"},
+		name= {
+				"User signs up successfully",
+				"Registration with mandatory fields empty"
+			  },
+		
 		plugin = {
                 "pretty",
-                "html:target/PrestoSop.html",
+                "html:target/signup.html",
                 "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
         }
 
