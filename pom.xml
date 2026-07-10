@@ -53,13 +53,13 @@
     </dependency>
  
     <!-- Extent Reports Cucumber Adapter for HTML reports -->
-    <dependency>
+  <dependency>
         <groupId>tech.grasshopper</groupId>
         <artifactId>extentreports-cucumber7-adapter</artifactId>
         <version>1.14.0</version>
     </dependency>
     
-   <dependency>
+    <dependency>
     <groupId>com.aventstack</groupId>
     <artifactId>extentreports</artifactId>
     <version>5.1.1</version>

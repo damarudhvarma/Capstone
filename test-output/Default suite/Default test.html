@@ -55,11 +55,11 @@ function toggleAllBoxes() {
 <body>
 <h2 align='center'>Default test</h2><table border='1' align="center">
 <tr>
-<td>Tests passed/Failed/Skipped:</td><td>0/1/0</td>
+<td>Tests passed/Failed/Skipped:</td><td>4/0/0</td>
 </tr><tr>
-<td>Started on:</td><td>Thu Jul 09 16:20:36 IST 2026</td>
+<td>Started on:</td><td>Fri Jul 10 12:59:22 IST 2026</td>
 </tr>
-<tr><td>Total time:</td><td>10 seconds (10352 ms)</td>
+<tr><td>Total time:</td><td>111 seconds (111741 ms)</td>
 </tr><tr>
 <td>Included groups:</td><td></td>
 </tr><tr>
@@ -67,8 +67,8 @@ function toggleAllBoxes() {
 </tr>
 </table><p/>
 <small><i>(Hover the method name to see the test class name)</i></small><p/>
-<table width='100%' border='1' class='invocation-failed'>
-<tr><td colspan='4' align='center'><b>FAILED TESTS</b></td></tr>
+<table width='100%' border='1' class='invocation-passed'>
+<tr><td colspan='4' align='center'><b>PASSED TESTS</b></td></tr>
 <tr><td><b>Test method</b></td>
 <td><b>Attribute(s)</b></td>
 <td width="30%"><b>Exception</b></td>
@@ -76,17 +76,25 @@ function toggleAllBoxes() {
 <td><b>Instance</b></td>
 </tr>
 <tr>
-<td title='Runner.Featuredprodrunner.runScenario()'><b>runScenario</b><br>Test class: Runner.Featuredprodrunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "user sorts the products of a Category", "Featured Product Checkout Flow"</td>
-<td><div><pre>java.lang.NullPointerException: Cannot invoke &quot;prestapages.FeaturedProductsPOM.allFeatures()&quot; because &quot;this.fs&quot; is null
-	at StepDef.Featuredprodsteps.user_navigates_to_featured_products_page(Featuredprodsteps.java:120)
-	at ✽.user navigates to featured products page(file:///C:/Users/DA20696043/eclipse-workspace/Capstone-project/src/test/java/Features/FeaturedProduct.feature:5)
-</pre></div><a href='#' onClick='toggleBox("stack-trace232042179", this, "Click to show all stack frames", "Click to hide stack frames")'>Click to show all stack frames</a>
-<div class='stack-trace' id='stack-trace232042179'><pre>java.lang.NullPointerException: Cannot invoke &quot;prestapages.FeaturedProductsPOM.allFeatures()&quot; because &quot;this.fs&quot; is null
-	at StepDef.Featuredprodsteps.user_navigates_to_featured_products_page(Featuredprodsteps.java:120)
-	at ✽.user navigates to featured products page(file:///C:/Users/DA20696043/eclipse-workspace/Capstone-project/src/test/java/Features/FeaturedProduct.feature:5)
-</pre></div></td>
-<td>8</td>
-<td>Runner.Featuredprodrunner@a7e2d9d</td></tr>
+<td title='Runner.SortProductsRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.SortProductsRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "user sorts the products by Price, low to high", "user sorts the fetaured products"</td>
+<td></td>
+<td>28</td>
+<td>Runner.SortProductsRunner@a7e2d9d</td></tr>
+<tr>
+<td title='Runner.SortProductsRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.SortProductsRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "user sorts the products by Price, high to low", "user sorts the fetaured products"</td>
+<td></td>
+<td>30</td>
+<td>Runner.SortProductsRunner@a7e2d9d</td></tr>
+<tr>
+<td title='Runner.SortProductsRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.SortProductsRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "user sorts the products by name A to Z", "user sorts the fetaured products"</td>
+<td></td>
+<td>31</td>
+<td>Runner.SortProductsRunner@a7e2d9d</td></tr>
+<tr>
+<td title='Runner.SortProductsRunner.runScenario()'><b>runScenario</b><br>Test class: Runner.SortProductsRunner<br>Test method: Runs Cucumber Scenarios<br>Parameters: "user sorts the products by Sales, highest to lowest", "user sorts the fetaured products"</td>
+<td></td>
+<td>19</td>
+<td>Runner.SortProductsRunner@a7e2d9d</td></tr>
 </table><p>
 </body>
 </html>

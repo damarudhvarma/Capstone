@@ -19,10 +19,10 @@ public class TestFeaturedProducts {
         driver.manage()
                 .timeouts()
                 .implicitlyWait(Duration.ofSeconds(10));
-        SortProducts fs= new SortProducts(driver);
     	   new WebDriverWait(driver, Duration.ofSeconds(15))
            .until(webDriver -> ((JavascriptExecutor) webDriver)
            .executeScript("return document.readyState").equals("complete"));
+    	   SortProducts fs= new SortProducts(driver);
     	fs.allFeatures();
     	fs.selectCategory();
     	fs.sortBy();

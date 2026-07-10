@@ -1,6 +1,8 @@
 @prestashop @checkoutFlow
 Feature: Featured Product Checkout Flow
  
+
+ 
   Scenario: User purchases a featured product successfully
  
     Given user is logged into the PrestaShop application

@@ -25,27 +25,27 @@ public class SortProducts {
 	}
 	
 	
-	@FindBy(xpath="//*[@id=\"content\"]/section[3]/div/div[2]/a") WebElement All_featured;
+	@FindBy(xpath="//a[contains(normalize-space(),'All featured products')]") WebElement All_featured;
 	@FindBy(xpath="//a[@title='Accessories']")WebElement category;
 	@FindBy(xpath="//button[@data-bs-toggle='dropdown']") WebElement dropDown;
 	@FindBy(xpath="//*[@id=\"js-product-list-top\"]/div/div[2]/div[2]/div/a[3]") WebElement option;
 	
 	
 	public void allFeatures() throws InterruptedException {
-		wait.until(ExpectedConditions.invisibilityOfElementLocated(
-		        By.id("loadingMessage")));
-		Thread.sleep(5000);
-		js.executeScript(
-			    "window.scrollTo(0, document.body.scrollHeight);");
-		wait.until(ExpectedConditions.visibilityOf(All_featured));
 
-		js.executeScript("arguments[0].scrollIntoView({block:'center'});",All_featured);
+    wait.until(ExpectedConditions.visibilityOf(All_featured));
 
-wait.until(ExpectedConditions.elementToBeClickable(All_featured)).click();
-//		js.executeScript("window.scrollBy(0,500);");
-//		
-//		wait.until(ExpectedConditions.elementToBeClickable(All_featured)).click();
-	}
+    js.executeScript(
+        "arguments[0].scrollIntoView({behavior:'instant', block:'center'});",
+        All_featured
+    );
+
+    Thread.sleep(2000);
+
+    js.executeScript("arguments[0].click();", All_featured);
+
+    System.out.println("Clicked All Featured Products");
+}
 	
 	public void selectCategory() throws InterruptedException {
 		wait.until(ExpectedConditions.elementToBeClickable(category)).click();
@@ -64,4 +64,19 @@ wait.until(ExpectedConditions.elementToBeClickable(All_featured)).click();
 		System.out.println("sorted by Name A to Z");
 		
 	}
+	
+	public void selectSortOption(String optionText) throws InterruptedException {
+
+    js.executeScript("window.scrollBy(0,200);");
+Thread.sleep(2000);
+    wait.until(ExpectedConditions.elementToBeClickable(dropDown)).click();
+
+    WebElement option = wait.until(
+            ExpectedConditions.elementToBeClickable(
+                    By.xpath("//a[contains(@aria-label,'" + optionText + "')]")));
+
+    js.executeScript("arguments[0].click();", option);
+
+    System.out.println("Selected sort option: " + optionText);
+}
 }
