@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite">
+
+             <parameter name="url"
+               value="https://demo.prestashop.com/#/en/front"/>
+               <parameter name="browser" value="chrome"/>
+
+  <test thread-count="5" name="contactus">
+    <classes>
+      <class name="Testng.Contactustestng"/>
+    </classes>
+  </test> <!-- contactus -->
+</suite> <!-- Suite -->

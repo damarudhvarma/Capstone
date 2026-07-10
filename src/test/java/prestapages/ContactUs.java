@@ -45,6 +45,7 @@ public ContactUs(WebDriver driver) {
     
     public void clickContactus() {
     	new WebDriverWait(driver, Duration.ofSeconds(15))
+    	
         .until(webDriver -> ((JavascriptExecutor) webDriver)
         .executeScript("return document.readyState").equals("complete"));
 
