@@ -20,6 +20,15 @@ public class BaseClass {
     public static synchronized WebDriver getDriver() {
         return tlDriver.get();
     }
+//    public static void  testngInit() {
+//    	System.out.println(">>> Initializing WebDriver instance...");
+//    	WebDriver driver = new ChromeDriver();
+//
+//        driver.manage().window().maximize();
+//
+//        driver.get("https://demo.prestashop.com/#/en/front");
+//    }
+        
 
     public static void quitDriver() {
         if (getDriver() != null) {
