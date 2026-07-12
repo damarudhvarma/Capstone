@@ -3,16 +3,13 @@
 <suite name="Failed suite [Default suite]" guice-stage="DEVELOPMENT">
   <test thread-count="5" name="Default test(failed)">
     <classes>
-      <class name="Testng.Contactustestng">
+      <class name="Runner.Featuredprodrunner">
         <methods>
-          <include name="enterIssueTest"/>
-          <include name="sendMessageTest"/>
-          <include name="tearDown"/>
-          <include name="clickContactUsTest"/>
-          <include name="setup"/>
-          <include name="enterEmailTest"/>
+          <include name="setUpClass"/>
+          <include name="tearDownClass"/>
+          <include name="runScenario" invocation-numbers="0"/>
         </methods>
-      </class> <!-- Testng.Contactustestng -->
+      </class> <!-- Runner.Featuredprodrunner -->
     </classes>
   </test> <!-- Default test(failed) -->
 </suite> <!-- Failed suite [Default suite] -->

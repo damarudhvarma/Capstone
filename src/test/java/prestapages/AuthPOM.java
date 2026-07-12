@@ -6,6 +6,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -58,7 +59,12 @@ wait.until(ExpectedConditions.invisibilityOfElementLocated(
 		wait.until(ExpectedConditions.elementToBeClickable(signin));
 		 js.executeScript("arguments[0].click();", signin);
 		 Thread.sleep(5000);
-		  js.executeScript("arguments[0].scrollIntoView(true);", create_your_account);
+		 js.executeScript("arguments[0].scrollIntoView({block:'center'});",create_your_account);
+			Thread.sleep(2000);
+			js.executeScript("arguments[0].click();", create_your_account);
+		// ((JavascriptExecutor)driver).executeScript(
+			      //  "arguments[0].scrollIntoView({block:'center'});",
+			       // create_your_account );
 		wait.until(ExpectedConditions.elementToBeClickable(create_your_account));
 		create_your_account.click();
 		wait.until(ExpectedConditions.elementToBeClickable(gender_Mr));
