@@ -1,7 +1,15 @@
 package Testng;
 
-	import java.time.Duration;
+	import java.io.FileInputStream;
+import java.io.IOException;
+import java.time.Duration;
+import java.util.Properties;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 	import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.PageFactory;
@@ -22,6 +30,7 @@ public class Signuptestng {
 	    WebDriver driver;
 	    prestaloginandsignup1 pr;
 	    WebDriverWait wait;
+	    private static final Logger logger = LogManager.getLogger(Signuptestng.class);
 
 	    @BeforeTest
 	    public void setup() {
@@ -38,10 +47,6 @@ public class Signuptestng {
 
 	    	        pr = new prestaloginandsignup1(driver);
 	    	    }
-	    	    
-	    	
-	    	
-	  
 
 	    @DataProvider(name = "signupData")
 	    public Object[][] signupData() {
@@ -62,20 +67,42 @@ public class Signuptestng {
 	        pr.signup();
 
 	        pr.signup_firstname(fname);
-
+	        
 	        pr.signup_lastname(lname);
-
+	       
 	        pr.signup_email(email);
-
+	        
 	        pr.signup_password(password);
 
 	        pr.signup_checkbox();
 
 	        pr.signup_create();
-
-	        System.out.println("Account Created Successfully");
+	        
+	        logger.info("Account created sucessfully");
 
 	        pr.signout();
+	        
+	        FileInputStream fis = new FileInputStream("C:\\Users\\DA20696043\\eclipse-workspace\\Capstone-project\\src\\test\\java\\utils\\data.propertites");
+	    	Properties props = new Properties();
+	    	props.load(fis);
+	    	String path = props.getProperty("excelPath");
+	    	FileInputStream excelFile = new FileInputStream(path);
+	    	XSSFWorkbook workbook = new XSSFWorkbook(excelFile);
+	    	XSSFSheet sheet = workbook.getSheet("Sheet1");
+	    	int totalRows =sheet.getPhysicalNumberOfRows();
+	    	System.out.println("total rows : "+totalRows);
+	    	String username = sheet.getRow(0).getCell(0).getStringCellValue();
+	    	logger.info("read username from excel....");
+	    	String pass = sheet.getRow(0).getCell(1).getStringCellValue();
+	    	logger.info("read password from exccel...");
+	    	
+	    	System.out.println(username);
+	    	System.out.println(pass);
+	    	
+	    	pr.signin(username,pass);
+	    	
+	    	logger.info("logged in successfully");
+	    	  Thread.sleep(2000);
 	    }
 	    
 
@@ -88,6 +115,10 @@ public class Signuptestng {
 	            driver.quit();
 	        }
 	    }
+	    
+	    
+	    
+	 
 	}
 
 

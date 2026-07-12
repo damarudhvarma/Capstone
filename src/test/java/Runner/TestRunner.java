@@ -16,8 +16,9 @@ import org.testng.annotations.DataProvider;
     plugin = {
         "pretty",
         "html:target/cucumber-reports/cucumber-html-report.html", // Standard interactive HTML dashboard report
-        "json:target/cucumber-reports/cucumber.json",             // Required backend JSON metadata matrix
-        "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"         // Allure test lifecycle monitoring adapter plugin
+        "json:target/cucumber-reports/cucumber.json",          // Required backend JSON metadata matrix
+        "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+        "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
     },
     monochrome = true                                             // Cleans unreadable formatting tokens from your terminal console view
 )

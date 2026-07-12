@@ -1,5 +1,7 @@
 package StepDef;
 
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -13,7 +15,7 @@ public class ContactUsDef {
 	
 	ContactUs page;
 	WebDriver driver;
-	
+	private static final Logger logger = LogManager.getLogger(ContactUs.class);
 
     @Given("User is on Contact Us page")
     public void user_is_on_contact_us_page() {
@@ -29,11 +31,13 @@ public class ContactUsDef {
 	@When("User enters contact email")
 	public void user_enters_contact_email() throws InterruptedException {
 	    page.contactEmail();
+	    logger.info("email entered..");
 	}
 
 	@When("User enters issue message")
 	public void user_enters_issue_message() {
 	    page.contactissue();
+	    logger.info("issues entered..");
 	}
 
 	@When("User clicks Send your message button")

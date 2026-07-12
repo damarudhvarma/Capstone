@@ -15,7 +15,8 @@ import io.cucumber.testng.CucumberOptions;
 		plugin = {
                 "pretty",
                 "html:target/signup.html",
-                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm"
+                "io.qameta.allure.cucumber7jvm.AllureCucumber7Jvm",
+                "com.aventstack.extentreports.cucumber.adapter.ExtentCucumberAdapter:"
         }
 
 		)
